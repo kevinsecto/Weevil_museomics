@@ -1,0 +1,18 @@
+#!/bin/bash
+#This script describes how to run BUSCO 5.8.2 using the endopterygota dataset on genome assemblies in the ASU SOL supercomputer
+#SBATCH -p general
+#SBATCH --mem 200G
+#SBATCH -c 24 # number cpus
+#SBATCH -t 7-00:00:00 # wall time (D-HH:MM)
+#SBATCH --mail-type=ALL # Send a notification when the job starts, stops, or fails
+#SBATCH --mail-user=kcortesh@asu.edu # send-to address
+
+apptainer exec \
+  --bind /PATH/TO/ASSEMBLY/FOLDER:/ASSEMBLYFOLDER \
+  busco_v5.8.2_cv1.sif \
+  busco \
+  -f \
+  -i /ASSEMBLYFOLDER/scaffolds.fasta \
+  -o /PATH/TO/OUTPUTFILE/FILENAME \
+  -l endopterygota_odb10 \
+  -m geno \
