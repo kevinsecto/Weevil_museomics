@@ -12,3 +12,6 @@ module load jellyfish-2.2.7-gcc-12.1.0
 
 #count all k-mers
 jellyfish count -F 2 -t 10 -C -m 21 -s 200M -o PATH/TO/OUTPUT/filename <(gunzip -c /PATH/TO/READ1.fastq.gz) <(gunzip -c /PATH/TO/READ2.fastq.gz)
+
+#compute histogram
+jellyfish histo -o filename.histo OutFileFromPreviousStep #PATH/TO/OUTPUT/filename#
