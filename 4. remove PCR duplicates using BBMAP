@@ -1,0 +1,25 @@
+#!/bin/bash
+#The following script describes how to remove PCR duplicates using BBMAP in the ASU SOL supercomputer
+#SBATCH -p general
+#SBATCH -q public
+#SBATCH --mem 80G
+#SBATCH -c 6 # number cpus
+#SBATCH -t 0-24:00:00 # wall time (D-HH:MM)
+#SBATCH --mail-type=ALL # Send a notification when the job starts, stops, or fails
+module purge
+
+#call mamba
+module load mamba/latest
+
+#call bbmap
+source activate bbmapenv
+
+
+ls *-READ1.fastq.gz > samples.txt
+sed -i "s/-READ1.fastq.gz//g" samples.txt
+
+cat samples.txt | while read line
+do
+echo "dedupe *-READ[1/2].fastq.gz..."
+clumpify.sh -Xmx30g in=$line\-READ1.fastq.gz in2=$line\-READ2.fastq.gz out=$line\-R1.fastq.gz out2=$line\-R2.fastq.gz dedupe
+done
