@@ -1,0 +1,6 @@
+#!/bin/bash
+#Visualize trimmed reads using FASTCQ in the ASU SOL supercomputer
+#First, load FASTQC from the cluster
+ module load fastqc-0.12.1-gcc-11.2.0
+#Finally, run FASTQC on forward and reverse reads of each sample
+fastqc /path/to/READ1-TRIMMED.fastq.gz /path/to/READ2-TRIMMED.fastq.gz
