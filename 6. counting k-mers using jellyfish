@@ -1,0 +1,14 @@
+#!/bin/bash
+#This script describes how to count canonical k-mers using jellyfish in the ASU SOL supercomputer
+#SBATCH -p general
+#SBATCH --mem 200G
+#SBATCH -c 24 # number cpus
+#SBATCH -t 0-30:00 # wall time (D-HH:MM)
+#SBATCH --mail-type=ALL # Send a notification when the job starts, stops, or fails
+#SBATCH --mail-user=kcortesh@asu.edu # send-to address
+
+#load jellyfish
+module load jellyfish-2.2.7-gcc-12.1.0
+
+#count all k-mers
+jellyfish count -F 2 -t 10 -C -m 21 -s 200M -o PATH/TO/OUTPUT/filename <(gunzip -c /PATH/TO/READ1.fastq.gz) <(gunzip -c /PATH/TO/READ2.fastq.gz)
