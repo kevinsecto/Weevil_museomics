@@ -1,0 +1,19 @@
+#!/bin/bash
+#This script described how to create an assembly from trimmed sequences using SPAdes 4.0 in the ASU SOL supercomputer
+#SBATCH -p highmem
+#SBATCH --mem 2000G
+#SBATCH -c 32 # number cpus
+#SBATCH -t 7-00:00:00 # wall time (D-HH:MM)
+#SBATCH -e samplename.err # STDERR (%j = JobId)
+#SBATCH --output=samplename.out
+#SBATCH --mail-type=ALL # Send a notification when the job starts, stops, or fails
+#SBATCH --mail-user=kcortesh@asu.edu # send-to address
+
+#LOAD MAMBA
+module load mamba/latest
+
+#ACTIVATE bioinfo environment (contains spades 4.0.0)
+source activate bioinfo
+
+#run assembly
+spades.py -t 16 -m 2000 -k 21,33,55,77 --pe1-1 /PATH/TO/TRIMMED/READ1.fastq.gz --pe1-2 /PATH/TO/TRIMMED/READ2.fastq.gz --pe1-s /PATH/TO/READ1_SINGLETONS.fastq.gz --pe2-s /PATH/TO/READ2_SINGLETOS.fastq.gz --checkpoints last -o /PATH/TO/OUTPUT/ASSEMBLY/FILENAME
