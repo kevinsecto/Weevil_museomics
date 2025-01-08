@@ -1,0 +1,18 @@
+#This is an R script to estimate genome size using files from section 6.1 of this repository
+#Plot k-mers histogram
+samplename <- read.table("PATH/TO/HISTOFILE/samplename.histo")
+plot(samplename[X:200,], type="l")  #the firts number on the given range, "X", will be adjusted according to the position of the first peak (rare and random sequencing errors in reads), which needs to be deleted. 
+
+#in this example, the first peak is deleted if we start from the number 3
+
+#Determine the total number of k-mer analysed and the peak position
+points(samplename[3:200,])
+
+#calculate the total number of k-mer in the distribution
+sum(as.numeric(samplename[3:10000,1]*samplename[3:10000,2]))
+
+#define the peak position
+samplename[3:30,]
+
+#estimate genome size
+sum(as.numeric(samplename[3:10000,1]*samplename[3:10000,2]))/7 #in this example, 7 is the position of the peak
