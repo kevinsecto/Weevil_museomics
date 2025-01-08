@@ -1,5 +1,5 @@
-#This script describes how to trim raw reads using trimmomatic in the ASU SOL supercomputer
 #!/bin/bash
+#This script describes how to trim raw reads using trimmomatic in the ASU SOL supercomputer
 #Activate trimmomatic
 module avail trimmomatic
 
