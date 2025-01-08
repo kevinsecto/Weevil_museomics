@@ -1,5 +1,5 @@
 #!/bin/bash
-#Visualize raw reads using FASTCQ using the ASU SOL supercomputer clusters
+#Visualize raw reads using FASTCQ in the ASU SOL supercomputer
 #First, load FASTQC from the cluster
  module load fastqc-0.12.1-gcc-11.2.0
 #Finally, run FASTQC on forward and reverse reads of each sample
