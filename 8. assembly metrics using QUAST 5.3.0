@@ -1,0 +1,19 @@
+#!/bin/bash
+#This script describes how to obtain assembly metrics using QUAST 5.3.0 in the ASU SOL supercomputer
+#SBATCH -p general
+#SBATCH -q public
+#SBATCH --mem 16G
+#SBATCH -c 8 # number cpus
+#SBATCH -t 1-00:00:00 # wall time (D-HH:MM)
+#SBATCH --mail-type=ALL # Send a notification when the job starts, stops, or fails
+#SBATCH --mail-user=kcortesh@asu.edu # send-to address
+module purge
+
+#load mamba
+module load mamba/latest
+
+##load quast
+source activate quast
+
+#Run quast
+quast.py /PATH/TO/ASSEMBLY/scaffolds.fasta -o /PATH/TO/OUTPUT/FILENAME
