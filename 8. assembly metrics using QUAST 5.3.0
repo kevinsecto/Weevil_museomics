@@ -7,12 +7,12 @@
 #SBATCH -t 1-00:00:00 # wall time (D-HH:MM)
 #SBATCH --mail-type=ALL # Send a notification when the job starts, stops, or fails
 #SBATCH --mail-user=kcortesh@asu.edu # send-to address
-module purge
 
-#load mamba
+
+# Load mamba
 module load mamba/latest
 
-##load quast
+# Load quast (this is how I activate it in ASU cluster, you could call it from your personal directories)
 source activate quast
 
 #Run quast
